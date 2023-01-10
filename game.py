@@ -7,16 +7,16 @@ class Game:
         self.solved = False
 
     def start_game(self):
-        print("""A random number has been selected between 1 and 100
-        you will type your guesses below until you guess the number""")
+        print("""
+A random number has been selected between 1 and 100
+you will type your guesses below until you guess the number""")
         while self.solved == False:
             try:
-                choice = input("What is your guess?  ")
+                choice = int(input("What is your guess?  "))
                 self.guesses += 1
                 if choice < 1 or choice > 100:
-
-                #the statements below evaluate whether choice is
-                #correct and is an integer
+                    print("You must guess between 1 and 100")
+                    pass
                 if choice == int:
                     if choice == self.answer:
                         self.solved == True
