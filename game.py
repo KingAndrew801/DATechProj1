@@ -1,7 +1,7 @@
 import random
 
 class Game:
-     def __init__(self):
+    def __init__(self):
         self.answer = random.randint(1,100)
         self.guesses = 0
         self.solved = False
@@ -13,8 +13,24 @@ class Game:
             try:
                 choice = input("What is your guess?  ")
                 self.guesses += 1
-                if choice == self.answer:
-                    self.solved == True
+                if choice < 1 or choice > 100:
+
+                #the statements below evaluate whether choice is
+                #correct and is an integer
+                if choice == int:
+                    if choice == self.answer:
+                        self.solved == True
+                    else:
+                        print("That answer is incorrect.")
+                        if choice > self.answer:
+                            print("You need to go higher")
+                        if choice < self.answer:
+                            print("You need to go lower.")
+                else:
+                    raise ValueError("You need to guess using numbers.")
+            except ValueError as err:
+                print(err)
+
 
 if __name__ == '__main__':
     game = Game()
