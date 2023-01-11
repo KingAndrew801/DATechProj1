@@ -1,38 +1,64 @@
-"""
-Project 1 - Number Guessing Game
---------------------------------
+from game import Game
+import statistics
 
-For this first project you can use Workspaces.
+class Player:
 
-NOTE: If you prefer to work locally on your own computer, you can totally do that by clicking: File -> Download Workspace in the file menu after you fork the snapshot of this workspace.
+    def __init__(self, name):
+        self.name = None
+        self.games = []
+        self.count = 0
+        self.existing = True
 
-"""
+    def menu(self):
+        while self.existing:
+            print("""-------------------------------------
+What would you like to do?
+A. Play Game
+B. View Stats
+C. Terminate Self
+-------------------------------------""")
+            choice = input("Enter selection here:   ").upper()
+            if choice == 'A':
+                playing = True
+                while playing:
+                    self.count += 1
+                    game = Game()
+                    self.games.append(game.start_game())
+                    try:
+                        choosy = input("Do you want to play again?(Y/N)   ").upper()
+                        if choosy == 'Y':
+                            playing = True
+                        elif choosy == 'N':
+                            print("-------------------------------------")
+                            print("Your games will be recorded.")
+                            playing = False
+                        else:
+                            raise ValueError('That selection is invalid. Only Y or N is accepted.')
+                    except ValueError as err:
+                        print(err)
+            if choice == 'B':
+                try:
+                    if self.games:
+                        print(f"""
+Number of games played: {self.count}
+Average of guesses: {statistics.mean(self.games)}                
+Mean of guesses:{statistics.mean(self.games)}
+Median of guesses:{statistics.median(self.games)}""")
+                    else:
+                        raise ValueError("Games must be played to make data for stats.")
+                except ValueError as err:
+                    print(err)
+            if choice =="C":
+                print("""You have chosen to TERMINATE yourself.
+Your existence has ended.
+-------------------------------------""")
+                self.existing = False
 
-import random
-
-
-def start_game():
-    """Psuedo-code Hints
-
-    When the program starts, we want to:
-    ------------------------------------
-    1. Display an intro/welcome message to the player.
-    2. Store a random number as the answer/solution.
-    3. Continuously prompt the player for a guess.
-      a. If the guess greater than the solution, display to the player "It's lower".
-      b. If the guess is less than the solution, display to the player "It's higher".
-
-    4. Once the guess is correct, stop looping, inform the user they "Got it"
-         and show how many attempts it took them to get the correct number.
-    5. Save their attempt number to a list.
-    6. At the end of the game, show the player, 1) their number of attempts, 2) the mean, median, and mode of the saved attempts list.
-    7. Ask the player if they want to play again.
-
-    ( You can add more features/enhancements if you'd like to. )
-    """
-    # write your code inside this function.
-
-
-
-# Kick off the program by calling the start_game function.
-start_game()
+def begin_life():
+    name = input('What is your name?   ').title()
+    print("-------------------------------------")
+    print(f"{name} you have been spoken into existence!!!!")
+    player = Player(name)
+    return player.menu()
+if __name__ == '__main__':
+    begin_life()
