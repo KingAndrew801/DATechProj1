@@ -41,6 +41,7 @@ What is your guess?  """))
                     raise ValueError("You need to guess using numbers.")
             except ValueError as err:
                 print(err)
+                continue
             print(f"""-------------------------------
 You have made {self.guesses} guesses.
 The mean of your guesses is: {statistics.mean(self.guesslist)}
