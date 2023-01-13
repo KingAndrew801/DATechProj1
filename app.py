@@ -45,16 +45,22 @@ Number of games played: {self.count}
 Average of guesses: {statistics.mean(self.games)}                
 Mean of guesses:{statistics.mean(self.games)}
 Median of guesses:{statistics.median(self.games)}""")
+                        elif self.count == 1:
+                            raise Exception('You must play more than one game to make stats.')
                         else:
                             raise ValueError("Games must be played to make data for stats.")
                     except ValueError as err:
                         print(err)
+                        continue
+                    except Exception as err:
+                        print(err)
+                        continue
                 if choice =="C":
                     print("""You have chosen to TERMINATE yourself.
 Your existence has ended.
 -------------------------------------""")
                     self.existing = False
-                else:
+                elif choice != 'A' or 'B' or 'C':
                     raise Exception('You must choose A, B, or C. Nothing else is valid.')
             except Exception as err:
                 print(err)
