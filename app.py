@@ -25,18 +25,23 @@ C. Terminate Self
                         self.count += 1
                         game = Game()
                         self.games.append(game.start_game())
-                        try:
-                            choosy = input("Do you want to play again?(Y/N)   ").upper()
-                            if choosy == 'Y':
-                                playing = True
-                            elif choosy == 'N':
-                                print("-------------------------------------")
-                                print("Your games will be recorded.")
-                                playing = False
-                            else:
-                                raise ValueError('That selection is invalid. Only Y or N is accepted.')
-                        except ValueError as err:
-                            print(err)
+                        decided = False
+                        while decided == False:
+                            try:
+                                choosy = input("Do you want to play again?(Y/N)   ").upper()
+                                if choosy == 'Y':
+                                    decided = True
+                                    playing = True
+                                elif choosy == 'N':
+                                    print("-------------------------------------")
+                                    print("Your games will be recorded.")
+                                    decided = True
+                                    playing = False
+                                else:
+                                    raise ValueError('That selection is invalid. Only Y or N is accepted.')
+                            except ValueError as err:
+                                print(err)
+                                continue
                 if choice == 'B':
                     try:
                         if self.games:
@@ -64,6 +69,7 @@ Your existence has ended.
                     raise Exception('You must choose A, B, or C. Nothing else is valid.')
             except Exception as err:
                 print(err)
+                continue
 
 def begin_life():
     name = input('What is your name?   ').title()
