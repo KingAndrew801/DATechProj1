@@ -22,8 +22,6 @@ you will type your guesses below until you guess the number""")
 What is your guess?  """))
                 self.guesses += 1
                 self.guesslist.append(choice)
-                print(f"""isinstance(str): {isinstance(choice, str)}""")
-                print(f"""isinstance(int): {isinstance(choice, int)}""")
                 if choice < 1 or choice > 100:
                     raise ValueError("You need to guess using numbers between 1 and 100.")
                 elif isinstance(choice, str):
@@ -32,7 +30,7 @@ What is your guess?  """))
                     if choice == self.answer:
                         self.solved = True
                         print("That is correct!")
-                        return self.guesses
+                        return self.guesses.append(choice)
                     else:
                         print("That answer is incorrect.")
                         if choice < self.answer:
