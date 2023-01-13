@@ -20,26 +20,29 @@ you will type your guesses below until you guess the number""")
                 print(self.answer)
                 choice = int(input("""-------------------------------
 What is your guess?  """))
-                self.guesses += 1
-                self.guesslist.append(choice)
+            except ValueError:
+                print('That guess is invalid. You have to guess using numbers.')
+                continue
+            self.guesses += 1
+            self.guesslist.append(choice)
+            try:
                 if choice < 1 or choice > 100:
-                    raise ValueError("You need to guess using numbers between 1 and 100.")
-                elif isinstance(choice, str):
-                    raise ValueError("You have to guess using numbers.")
+                    raise Exception("You need to guess using numbers between 1 and 100.")
                 elif isinstance(choice, int):
                     if choice == self.answer:
                         self.solved = True
                         print("That is correct!")
-                        return self.guesses.append(choice)
                     else:
                         print("That answer is incorrect.")
                         if choice < self.answer:
                             print("You need to go higher")
                         if choice > self.answer:
                             print("You need to go lower.")
-                else:
-                    raise ValueError("You need to guess using numbers.")
-            except ValueError as err:
+            except Exception as err:
+                print(err)
+                continue
+            except TypeError as err:
+                print(err)
                 continue
             print(f"""-------------------------------
 You have made {self.guesses} guesses.
