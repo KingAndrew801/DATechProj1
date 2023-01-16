@@ -12,9 +12,9 @@ class Game:
         return f"{self.guesses}"
 
     def start_game(self):
-        print("""
-A random number has been selected between 1 and 100
-you will type your guesses below until you guess the number""")
+        print("""-------------------------------------
+You have created a number between 1 and 100.
+Now try to guess the number by typing it below.""")
         while self.solved == False:
             try:
                 print(self.answer)
@@ -32,6 +32,7 @@ What is your guess?  """))
                     if choice == self.answer:
                         self.solved = True
                         print("That is correct!")
+                        return self
                     else:
                         print("That answer is incorrect.")
                         if choice < self.answer:
@@ -45,10 +46,10 @@ What is your guess?  """))
                 print(err)
                 continue
             print(f"""-------------------------------
-You have made {self.guesses} guesses.
-The mean of your guesses is: {statistics.mean(self.guesslist)}
-The median of your guesses is: {statistics.median(self.guesslist)}
-The mode of your guesses is: {statistics.mode(self.guesslist)}""")
+You have made {self.guesses} guesses this game.
+The mean of these guesses is: {statistics.mean(self.guesslist)}
+The median of these guesses is: {statistics.median(self.guesslist)}
+The mode of these guesses is: {statistics.mode(self.guesslist)}""")
 
 if __name__ == '__main__':
     game = Game()
