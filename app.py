@@ -32,13 +32,15 @@ Median of guesses: {round(statistics.median(gameguesses), 1)}""")
                         continue
                 elif self.allguesses == 1:
                     raise Exception('You must play more than one game to make stats.')
-                else:
+                elif self.allguesses == 0:
                     raise ValueError("Games must be played to make data for stats.")
             except ValueError as err:
                 print(err)
+                trying = False
                 continue
             except Exception as err:
                 print(err)
+                trying = False
                 continue
             trying = False
 
