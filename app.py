@@ -44,6 +44,12 @@ Median of guesses: {round(statistics.median(gameguesses), 1)}""")
                 continue
             trying = False
 
+    def high_score(self):
+        scorelist = []
+        for game in self.games:
+            scorelist.append(game.guesses)
+        return min(scorelist)
+
     def menu(self):
         while self.existing:
             print("""-------------------------------------
@@ -58,6 +64,11 @@ C. Terminate Self
                 if choice == 'A':
                     playing = True
                     while playing:
+                        if self.count > 0:
+                            print(f"""-------------------------------------
+High score is: {self.high_score()}
+What are you going to do about it?
+-------------------------------------""")
                         self.count += 1
                         gameiz = Game()
                         self.games.append(gameiz.start_game())
@@ -68,7 +79,6 @@ C. Terminate Self
                                 if choosy == 'Y':
                                     decided = True
                                     playing = True
-                                    print(self.games)
                                 elif choosy == 'N':
                                     print("-------------------------------------")
                                     print("Your games will be recorded.")
