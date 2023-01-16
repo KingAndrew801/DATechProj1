@@ -17,7 +17,7 @@ Now try to guess the number by typing it below.""")
         while self.solved == False:
             try:
                 print(self.answer)
-                choice = int(input("""-------------------------------
+                choice = int(input("""-------------------------------------
 What is your guess?  """))
             except ValueError:
                 print('That guess is invalid. You have to guess using numbers.')
@@ -44,7 +44,7 @@ What is your guess?  """))
             except TypeError as err:
                 print(err)
                 continue
-            print(f"""-------------------------------
+            print(f"""-------------------------------------
 You have made {self.guesses} guesses this game.
 The mean of these guesses is: {statistics.mean(self.guesslist)}
 The median of these guesses is: {statistics.median(self.guesslist)}
