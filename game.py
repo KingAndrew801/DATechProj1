@@ -12,8 +12,7 @@ class Game:
         return f"{self.guesses}"
 
     def start_game(self):
-        print("""-------------------------------------
-You have created a number between 1 and 100.
+        print("""You have created a number between 1 and 100.
 Now try to guess the number by typing it below.""")
         while self.solved == False:
             try:
