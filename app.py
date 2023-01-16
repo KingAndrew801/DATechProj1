@@ -91,10 +91,10 @@ What are you going to do about it?
                                 print(err)
                                 continue
                         continue
-                if choice == 'B':
+                elif choice == 'B':
                     self.game_stats()
                     continue
-                if choice == "C":
+                elif choice == "C":
                     print("""You have chosen to TERMINATE yourself.
 Your existence has ended.
 -------------------------------------""")
