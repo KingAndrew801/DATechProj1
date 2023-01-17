@@ -73,6 +73,7 @@ What are you going to do about it?
                         gameiz = Game()
                         self.games.append(gameiz.start_game())
                         decided = False
+                        print(self.game_stats())
                         while decided == False:
                             try:
                                 choosy = input("Do you want to play again?(Y/N)   ").upper()
