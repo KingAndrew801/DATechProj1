@@ -16,7 +16,7 @@ class Game:
 Now try to guess the number by typing it below.""")
         while self.solved == False:
             try:
-                # print(self.answer)
+                print(self.answer)
                 choice = int(input("""-------------------------------------
 What is your guess?  """))
             except ValueError:
@@ -26,6 +26,8 @@ What is your guess?  """))
             self.guesslist.append(choice)
             try:
                 if choice < 1 or choice > 100:
+                    self.guesslist.pop()
+                    self.guesses -= 1
                     raise Exception("You need to guess using numbers between 1 and 100.")
                 elif isinstance(choice, int):
                     if choice == self.answer:
