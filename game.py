@@ -16,7 +16,7 @@ class Game:
 Now try to guess the number by typing it below.""")
         while self.solved == False:
             try:
-                print(self.answer)
+                # print(self.answer)
                 choice = int(input("""-------------------------------------
 What is your guess?  """))
             except ValueError:
